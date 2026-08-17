@@ -11,7 +11,6 @@ with open(path, mode="r", encoding="utf-8") as arquivo:
 df = pd.DataFrame(dados)
 
 #verifica os tipos
-print(df.dtypes)
 
 def limpar_string(valor):
     valor = str(valor)
@@ -42,6 +41,15 @@ for coluna in colunas_datetime:
     df[coluna] = df[coluna].apply(converter_datetime)
 
 
-print(df.head())
-
 print(df.dtypes)
+
+print("Quantidade de nulos:")
+print(df.isna().sum())
+
+print("\nQuantidade de duplicados:")
+print(df.duplicated().sum())
+
+df = df.drop_duplicates()
+print("Quantidade de duplicados:", df.duplicated().sum())
+
+print(df.head())
